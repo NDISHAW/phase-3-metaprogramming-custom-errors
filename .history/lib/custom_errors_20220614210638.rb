@@ -1,3 +1,5 @@
+require "pry"
+
 class Person
   attr_accessor :partner, :name
 
@@ -7,11 +9,9 @@ class Person
 
   def get_married(person)
     if person.is_a?(Person)
-      self.partner = person
-      person.partner = self
+      self.partner = Person
     else
-      begin
-        raise PartnerError
+      raise PartnerError
       rescue PartnerError => error
         puts error.message
       end
@@ -19,14 +19,15 @@ class Person
   end
 
   class PartnerError < StandardError
-    def message
-      "you must give the get_married method an argument of an instance of the person class!"
-    end
+    p "You are not PRIVILAGED to this method"
   end
+
 end
 
 beyonce = Person.new("Beyonce")
 beyonce.get_married("Jay-Z")
 puts beyonce.name
+
+
 
 
